@@ -1,3 +1,5 @@
+// import { Response } from "express";
+
 import { AppError } from "../errors";
 import { User } from "../models";
 import { IUser } from "../types";
@@ -18,6 +20,14 @@ class UserService {
       throw new AppError(e.message, e.status);
     }
   }
+
+  // public async createNew(data: IUser): Promise<IUser> {
+  //   try {
+  //     return User.create(data);
+  //   } catch (e) {
+  //     throw new AppError(e.message, e.status);
+  //   }
+  // }
 }
 
 export const userService = new UserService();

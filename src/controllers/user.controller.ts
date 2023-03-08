@@ -40,8 +40,8 @@ class UserController {
     next: NextFunction
   ): Promise<Response<IResponse<IUser>>> {
     try {
-      const body = req.body;
-      const user = await User.create(body);
+      const data = req.body;
+      const user = await User.create(data);
 
       return res.status(201).json({
         message: "User created!",
