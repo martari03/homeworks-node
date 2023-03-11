@@ -86,7 +86,7 @@ class UserMiddleware {
     next: NextFunction
   ): Promise<void> {
     try {
-      const { error, value } = UserValidator.updateUser.validate(req.body);
+      const { error, value } = UserValidator.validUser.validate(req.body);
 
       if (error) {
         throw new AppError(error.message, 400);
