@@ -27,7 +27,7 @@ class UserMiddleware {
     }
   }
 
-  public async isUserIdValid(
+  public async isIdValid(
     req: Request,
     res: Response,
     next: NextFunction
@@ -42,13 +42,13 @@ class UserMiddleware {
     }
   }
 
-  public async isUserValidCreate(
+  public async isValidCreate(
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<void> {
     try {
-      const { error, value } = UserValidator.createUser.validate(req.body);
+      const { error, value } = UserValidator.validUser.validate(req.body);
 
       if (error) {
         throw new AppError(error.message, 400);
@@ -61,7 +61,26 @@ class UserMiddleware {
     }
   }
 
-  public async isUserValidUpdate(
+  public async isValidUpdate(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { error, value } = UserValidator.updateUser.validate(req.body);
+
+      if (error) {
+        throw new AppError(error.message, 400);
+      }
+
+      req.body = value;
+      next();
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  public async isValidPartialUpdate(
     req: Request,
     res: Response,
     next: NextFunction

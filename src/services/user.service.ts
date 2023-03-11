@@ -21,13 +21,29 @@ class UserService {
     }
   }
 
-  // public async createNew(data: IUser): Promise<IUser> {
-  //   try {
-  //     return User.create(data);
-  //   } catch (e) {
-  //     throw new AppError(e.message, e.status);
-  //   }
-  // }
+  public async create(data: IUser) {
+    try {
+      return User.create(data);
+    } catch (e) {
+      throw new AppError(e.message, e.status);
+    }
+  }
+
+  public async update(id: string, data: IUser) {
+    try {
+      return User.updateOne({ _id: id }, { ...data });
+    } catch (e) {
+      throw new AppError(e.message, e.status);
+    }
+  }
+
+  public async delete(id: string) {
+    try {
+      return User.deleteOne({ _id: id });
+    } catch (e) {
+      throw new AppError(e.message, e.status);
+    }
+  }
 }
 
 export const userService = new UserService();

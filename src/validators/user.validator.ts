@@ -12,7 +12,7 @@ export class UserValidator {
   private static password = Joi.string().regex(regexConstants.PASSWORD);
   private static gender = Joi.valid(...Object.values(EGenders));
 
-  static createUser = Joi.object({
+  static validUser = Joi.object({
     name: this.firstName.required(),
     email: this.email.required(),
     password: this.password.required(),
