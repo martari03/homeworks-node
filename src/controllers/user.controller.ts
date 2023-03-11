@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 
-import { User } from "../models";
 import { userService } from "../services";
 import { IMessage, IResponse, IUser } from "../types";
 
@@ -61,7 +60,7 @@ class UserController {
       const { userId } = req.params;
       const user = req.body;
 
-      const updatedUser = await User.updateOne({ _id: userId }, { ...user });
+      const updatedUser = await userService.update(userId, { ...user });
 
       return res.status(200).json({
         message: "User updated",
@@ -80,7 +79,7 @@ class UserController {
     try {
       const { userId } = req.params;
 
-      await User.deleteOne({ _id: userId });
+      await userService.delete(userId);
 
       return res.status(200).json({
         message: "User deleted",
