@@ -1,5 +1,3 @@
-// import { Response } from "express";
-
 import { AppError } from "../errors";
 import { User } from "../models";
 import { IUser } from "../types";
