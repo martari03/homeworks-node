@@ -41,7 +41,7 @@ class UserController {
   ): Promise<Response<IResponse<IUser>>> {
     try {
       const data = req.body;
-      const user = await User.create(data);
+      const user = await userService.create(data);
 
       return res.status(201).json({
         message: "User created!",
